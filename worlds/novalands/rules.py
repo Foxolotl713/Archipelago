@@ -101,6 +101,7 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Research Hypercomputer"), lambda state: state.has_all(["Supercomputer", "Behemittium Battery"], world.player))
 
     set_rule(world.get_location("Modular Brick"), lambda state: state.has("Furnace", world.player))
+    set_rule(world.get_location("Bone"), lambda state: state.has("Energy Rifle", world.player))
     set_rule(world.get_location("Iron Ingot"), lambda state: state.has_all(["Mass Production I", "Furnace"], world.player))
     set_rule(world.get_location("Copper Ingot"), lambda state: state.has_all(["Mass Production I", "Furnace"], world.player) and state.has_any(["Grass Island", "Rock Island"], world.player))
     set_rule(world.get_location("Steel"), lambda state: state.has_all(["Mass Production II", "Iron Ingot", "Copper Ingot", "Electric Furnace"], world.player))
