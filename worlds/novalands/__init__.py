@@ -1,0 +1,1 @@
+from .world import NovaLandsWorld as NovaLandsWorld
