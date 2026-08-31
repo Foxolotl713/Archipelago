@@ -49,6 +49,9 @@ LOCATION_NAME_TO_ID = {
     "Research Supercomputer" : 35,
     "Research Nuclear Tech" : 36,
     "Research Hypercomputer" : 37,
+    "Moschillar" : 38,
+    "Drameleon" : 39,
+    "Tunasa" : 40,
 }
 
 
@@ -77,6 +80,7 @@ def create_regular_locations(world: NovaLandsWorld) -> None:
     # Finally, we need to put the Locations ("checks") into their regions.
     # Once again, before we do anything, we can grab our regions we created by using world.get_region()
     Researches = world.get_region("Researches")
+    Islands = world.get_region("Islands")
     # A simpler way to do this is by using the region.add_locations helper.
     # For this, you need to have a dict of location names to their IDs (i.e. a subset of location_name_to_id)
     # Aha! So that's why we made that "get_location_names_with_ids" helper method earlier.
@@ -123,6 +127,14 @@ def create_regular_locations(world: NovaLandsWorld) -> None:
         ]
     )
     Researches.add_locations(Researches_locations, NovaLandsLocation)
+    Islands_locations = get_location_names_with_ids(
+        [
+            "Moschillar",
+            "Drameleon",
+            "Tunasa"
+        ]
+    )
+    Islands.add_locations(Islands_locations, NovaLandsLocation)
 
 def create_events(world: NovaLandsWorld) -> None:
     # Sometimes, the player may perform in-game actions that allow them to progress which are not related to Items.
@@ -171,6 +183,7 @@ def create_events(world: NovaLandsWorld) -> None:
     Researches.add_event("Reinforced Super Metal", "Reinforced Super Metal")
     Researches.add_event("Behemittium", "Behemittium")
     Researches.add_event("Behemittium Battery", "Behemittium Battery")
+    Researches.add_event("Hypercomputer Module", "Hypercomputer Module")
     Researches.add_event("Modular Brick", "Modular Brick")
     Researches.add_event("Berry", "Berry")
     Researches.add_event("Furnace", "Furnace")

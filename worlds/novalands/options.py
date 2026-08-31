@@ -27,16 +27,22 @@ if TYPE_CHECKING:
 
 # A Range is a numeric option with a min and max value. This will be represented by a slider on the website.
 class QuickStart(Toggle):
-    """Whether to start with the Mass Production I item."""
+    """Whether to start with the Explorer Needs I, Jetpack and Automation I"""
     display_name = "Quick Start"
 
 # A Choice is an option with multiple discrete choices. This will be represented by a dropdown on the website.
 class Goal(Choice):
     """The goal of the game"""
-    option_museum = 0
-    option_nova_gateway = 1
-    default = 0
+    option_museum = 1
+    option_moschillar = 2
+    option_drameleon = 3
+    option_tunasa = 4
+    default = 2
+    display_name = "Goal"
 
+class BossChecks(Toggle):
+    """Adds Locations for defeating and befriending bosses"""
+    display_name = "Boss Checks"
 
 # We must now define a dataclass inheriting from PerGameCommonOptions that we put all our options in.
 # This is in the format "option_name_in_snake_case: OptionClassName".
@@ -44,6 +50,7 @@ class Goal(Choice):
 class NovaLandsOptions(PerGameCommonOptions):
     quick_start: QuickStart
     goal: Goal
+    boss_checks: BossChecks
 
 
 # If we want to group our options by similar type, we can do so as well. This looks nice on the website.
@@ -53,6 +60,7 @@ class NovaLandsOptions(PerGameCommonOptions):
 options_presets = {
     "Default": {
         "quick_start": True,
-        "goal": 0
+        "goal": 2,
+        "boss_checks": True
     },
 }

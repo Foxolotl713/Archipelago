@@ -20,10 +20,8 @@ def set_all_rules(world: NovaLandsWorld) -> None:
 
 
 def set_all_entrance_rules(world: NovaLandsWorld) -> None:
-    researches_to_Menu = world.get_entrance("Researches to Menu")
-    menu_to_Islands = world.get_entrance("Menu to Islands")
-    set_rule(researches_to_Menu, lambda state: state.has("Automation I", world.player))
-    set_rule(menu_to_Islands, lambda state: state.has_all(["Explorer Needs I", "Iron Ingot", "Modular Brick", "Jetpack"], world.player))
+    researches_to_Islands = world.get_entrance("Researches to Islands")
+    set_rule(researches_to_Islands, lambda state: state.has_all(["Explorer Needs I", "Iron Ingot", "Modular Brick", "Jetpack"], world.player))
     # First, we need to actually grab our entrances. Luckily, there is a helper method for this.
     #overworld_to_bottom_right_room = world.get_entrance("Overworld to Bottom Right Room")
     #overworld_to_top_left_room = world.get_entrance("Overworld to Top Left Room")
@@ -98,10 +96,14 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Research Superhard Minerals"), lambda state: state.has("Titanium Ore", world.player))
     set_rule(world.get_location("Research Supercomputer"), lambda state: state.has_all(["Advanced Electronic Parts", "Reinforced Super Metal"], world.player))
     set_rule(world.get_location("Research Nuclear Tech"), lambda state: state.has_all(["Behemittium", "Reinforced Super Metal"], world.player))
-    set_rule(world.get_location("Research Hypercomputer"), lambda state: state.has_all(["Supercomputer", "Behemittium Battery"], world.player))
+    set_rule(world.get_location("Research Hypercomputer"), lambda state: state.has_all(["Supercomputer Module", "Behemittium Battery", "Hypercomputer"], world.player))
+
+    set_rule(world.get_location("Moschillar"), lambda state: state.has_all(["Energy Rifle", "Farming I", "Explorer Needs I", "Explorer Needs II", "Encampment Island"], world.player) or state.has_all(["Encampment Island", "Desert Island", "Grass Island", "Farming I"], world.player))
+    set_rule(world.get_location("Drameleon"), lambda state: state.has_all(["Energy Rifle", "Explorer Needs I", "Explorer Needs II", "Mysterious Tower Island"], world.player) or state.has_all(["Mysterious Tower Island", "Desert Island", "Grass Island", "Rock Island", "Sea Island", "Forest Island"], world.player))
+    set_rule(world.get_location("Tunasa"), lambda state: state.has_all(["Energy Rifle", "Explorer Needs I", "Explorer Needs II", "Oasis Island"], world.player) or state.has_all(["Oasis Island"], world.player))
 
     set_rule(world.get_location("Modular Brick"), lambda state: state.has("Furnace", world.player))
-    set_rule(world.get_location("Bone"), lambda state: state.has("Energy Rifle", world.player))
+    set_rule(world.get_location("Bone"), lambda state: state.has_any(["Energy Rifle", "Automation II"], world.player))
     set_rule(world.get_location("Iron Ingot"), lambda state: state.has_all(["Mass Production I", "Furnace"], world.player))
     set_rule(world.get_location("Copper Ingot"), lambda state: state.has_all(["Mass Production I", "Furnace"], world.player) and state.has_any(["Grass Island", "Rock Island"], world.player))
     set_rule(world.get_location("Steel"), lambda state: state.has_all(["Mass Production II", "Iron Ingot", "Copper Ingot", "Electric Furnace"], world.player))
@@ -117,14 +119,18 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Behemittium"), lambda state: state.has_all(["Superhard Minerals", "Behemittium Island"], world.player))
     set_rule(world.get_location("Supercomputer Module"), lambda state: state.has_all(["Supercomputer", "Assembler", "Advanced Electronic Parts", "Reinforced Super Metal", "Glass Works", "Industrial Refinery", "Glass", "Liquids I", "Snow Island"], world.player))
     set_rule(world.get_location("Behemittium Battery"), lambda state: state.has_all(["Nuclear Tech", "Industrial Refinery", "Reinforced Super Metal", "Glass Works", "Glass", "Liquids I", "Snow Island", "Behemittium", "Electric Furnace"], world.player))
-    
+    set_rule(world.get_location("Hypercomputer Module"), lambda state: state.has_all(["Hypercomputer", "Assembler", "Supercomputer Module", "Behemittium Battery", "Reinforced Super Metal", "Advanced Electronic Parts", "Electric Furnace", "Behemittium"], world.player))
+
     set_rule(world.get_location("Grass Island"), lambda state: state.has("Iron Ingot", world.player))
+    set_rule(world.get_location("Encampment Island"), lambda state: state.has("Copper Ingot", world.player))
     set_rule(world.get_location("Rock Island"), lambda state: state.has_all(["Iron Ingot", "Copper Ingot"], world.player))
     set_rule(world.get_location("Desert Island"), lambda state: state.has("Steel", world.player))
     set_rule(world.get_location("Sea Island"), lambda state: state.has("Steel", world.player))
+    set_rule(world.get_location("Mysterious Tower Island"), lambda state: state.has("Plastic", world.player))
     set_rule(world.get_location("Forest Island"), lambda state: state.has_all(["Plastic", "Biome Scanner"], world.player))
     set_rule(world.get_location("Snow Island"), lambda state: state.has_all(["Plasteel", "Biome Scanner"], world.player))
     set_rule(world.get_location("Metallic Island"), lambda state: state.has("Snow Island", world.player))
+    set_rule(world.get_location("Oasis Island"), lambda state: state.has("Snow Island", world.player))
     set_rule(world.get_location("Behemittium Island"), lambda state: state.has_all(["Reinforced Super Metal", "Biome Scanner"], world.player))
 
     set_rule(world.get_location("Electric Furnace"), lambda state: state.has_all(["Mass Production II", "Modular Brick", "Iron Ingot", "Copper Ingot", "Power"], world.player) or state.has_all(["Advanced Production III", "Modular Brick", "Steel", "Plastic", "Power"], world.player))
@@ -132,7 +138,7 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Assembler"), lambda state: state.has_all(["Complex Production I", "Plasteel", "Modular Brick", "Steel", "Power"], world.player))
     set_rule(world.get_location("Biome Scanner"), lambda state: state.has_all(["Modular Brick", "Steel", "Explorer Needs III"], world.player))
 
-    set_rule(world.get_location("Power",), lambda state: state.has_all(["Power I", "Iron Ingot", "Modular Brick"], world.player) or state.has_all(["Power II", "Glass", "Modular Brick", "Copper Ingot"], world.player) or state.has_all(["Power III", "Plasteel", "Steel", "Glass Works", "Glass", "Liquids I", "Snow Island", "Industrial Refinery", "Electric Furnace"], world.player))
+    set_rule(world.get_location("Power",), lambda state: state.has_all(["Power I", "Iron Ingot", "Modular Brick"], world.player))
     # Location rules work no differently from Entrance rules.
     # Most of our locations are chests that can simply be opened by walking up to them.
     # Thus, their logical requirements are covered by the Entrance rules of the Entrances that were required to
@@ -174,4 +180,11 @@ def set_completion_condition(world: NovaLandsWorld) -> None:
     #world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
     # In our case, we went for the Victory event design pattern (see create_events() in locations.py).
     # So lets undo what we just did, and instead set the completion condition to:
-    world.multiworld.completion_condition[world.player] = lambda state: state.has_all(["Supercomputer Module", "Behemittium Battery"], world.player)
+    if world.options.goal == 1:
+        world.multiworld.completion_condition[world.player] = lambda state: state.has_all(["Hypercomputer Module", "Behemittium Battery"], world.player)
+    if world.options.goal == 2:
+        world.multiworld.completion_condition[world.player] = lambda state: state.can_reach_location("Moschillar", world.player)
+    if world.options.goal == 3:
+        world.multiworld.completion_condition[world.player] = lambda state: state.can_reach_location("Drameleon", world.player)
+    if world.options.goal == 4:
+        world.multiworld.completion_condition[world.player] = lambda state: state.can_reach_location("Tunasa", world.player)

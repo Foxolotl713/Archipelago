@@ -24,13 +24,12 @@ def create_and_connect_regions(world: NovaLandsWorld) -> None:
 
 def create_all_regions(world: NovaLandsWorld) -> None:
     # Creating a region is as simple as calling the constructor of the Region class.
-    Menu = Region("Menu", world.player, world.multiworld)
     Researches = Region("Researches", world.player, world.multiworld)
     Islands = Region("Islands", world.player, world.multiworld)
 
 
     # Let's put all these regions in a list.
-    regions = [Researches, Menu, Islands]
+    regions = [Researches, Islands]
 
     # Some regions may only exist if the player enables certain options.
     # In our case, the Hammer locks the top middle chest in its own room if the hammer option is enabled.
@@ -45,10 +44,8 @@ def connect_regions(world: NovaLandsWorld) -> None:
     # Luckily, once you've submitted your regions to multiworld.regions,
     # you can get them at any time using world.get_region(...).
     Researches = world.get_region("Researches")
-    Menu = world.get_region("Menu")
     Islands = world.get_region("Islands")
-    Researches.connect(Menu,"Researches to Menu")
-    Menu.connect(Islands, "Menu to Islands")
+    Researches.connect(Islands,"Researches to Islands")
     # Okay, now we can get connecting. For this, we need to create Entrances.
     # Entrances are inherently one-way, but crucially, AP assumes you can always return to the origin region.
     # One way to create an Entrance is by calling the Entrance constructor.

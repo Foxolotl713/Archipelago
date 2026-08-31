@@ -27,7 +27,7 @@ ITEM_NAME_TO_ID = {
     "Suit Armor" : 14,
     "Farming II" : 15,
     "Explorer Needs III" : 16,
-    "Advanced Production" : 17,
+    "Advanced Production I" : 17,
     "Explorer Needs II" : 18,
     "Ranching II" : 19,
     "Overclocking I" : 20,
@@ -56,31 +56,31 @@ ITEM_NAME_TO_ID = {
 DEFAULT_ITEM_CLASSIFICATIONS = {
     "Mass Production I" : ItemClassification.progression,
     "Explorer Needs I" : ItemClassification.progression,
-    "Automation I" : ItemClassification.progression,
-    "Deposits I" : ItemClassification.progression,
+    "Automation I" : ItemClassification.useful,
+    "Deposits I" : ItemClassification.useful,
     "Jetpack" : ItemClassification.progression,
-    "Farming I" : ItemClassification.useful,
+    "Farming I" : ItemClassification.progression,
     "Power I" : ItemClassification.progression,
     "Automation II" : ItemClassification.progression,
-    "Energy Rifle" : ItemClassification.useful,
+    "Energy Rifle" : ItemClassification.progression,
     "Ranching I" : ItemClassification.useful,
-    "Power II" : ItemClassification.progression,
+    "Power II" : ItemClassification.useful,
     "Mass Production II" : ItemClassification.progression,
-    "Deposits II" : ItemClassification.progression,
+    "Deposits II" : ItemClassification.useful,
     "Suit Armor" : ItemClassification.useful,
     "Farming II" : ItemClassification.useful,
     "Explorer Needs III" : ItemClassification.progression,
-    "Advanced Production" : ItemClassification.progression,
-    "Explorer Needs II" : ItemClassification.useful,
+    "Advanced Production I" : ItemClassification.useful,
+    "Explorer Needs II" : ItemClassification.progression,
     "Ranching II" : ItemClassification.progression,
     "Overclocking I" : ItemClassification.useful,
     "Advanced Production II" : ItemClassification.progression,
-    "Modules I" : ItemClassification.progression,
+    "Modules I" : ItemClassification.useful,
     "Farming III" : ItemClassification.useful,
     "Advanced Production III" : ItemClassification.progression,
     "Explorer Needs IV" : ItemClassification.useful,
     "Ranching III" : ItemClassification.progression,
-    "Power III" : ItemClassification.progression,
+    "Power III" : ItemClassification.useful,
     "Complex Production I" : ItemClassification.progression,
     "Liquids I" : ItemClassification.progression,
     "Overclocking II" : ItemClassification.useful,
@@ -149,7 +149,7 @@ def create_all_items(world: NovaLandsWorld) -> None:
         world.create_item("Suit Armor"),
         world.create_item("Farming II"),
         world.create_item("Explorer Needs III"),
-        world.create_item("Advanced Production"),
+        world.create_item("Advanced Production I"),
         world.create_item("Explorer Needs II"),
         world.create_item("Ranching II"),
         world.create_item("Overclocking I"),
@@ -172,7 +172,6 @@ def create_all_items(world: NovaLandsWorld) -> None:
         world.create_item("Hypercomputer"),
     ]
     if not world.options.quick_start:
-        itempool.append(world.create_item("Mass Production I"))
         itempool.append(world.create_item("Explorer Needs I"))
         itempool.append(world.create_item("Automation I"))
         itempool.append(world.create_item("Jetpack"))
@@ -242,9 +241,10 @@ def create_all_items(world: NovaLandsWorld) -> None:
     # They will be sent as soon as they connect for the first time (depending on your client's item handling flag).
     # Players can add precollected items themselves via the generic "start_inventory" option.
     # If you want to add your own precollected items, you can do so via world.push_precollected().
+    
+    starting_item = world.create_item("Mass Production I")
+    world.push_precollected(starting_item)
     if world.options.quick_start:
-        starting_item = world.create_item("Mass Production I")
-        world.push_precollected(starting_item)
         starting_item2 = world.create_item("Explorer Needs I")
         world.push_precollected(starting_item2)
         starting_item3 = world.create_item("Automation I")
