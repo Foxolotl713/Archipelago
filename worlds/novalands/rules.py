@@ -103,7 +103,7 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Tunasa"), lambda state: state.has_all(["Energy Rifle", "Explorer Needs I", "Explorer Needs II", "Oasis Island"], world.player) or state.has_all(["Oasis Island"], world.player))
 
     set_rule(world.get_location("Modular Brick"), lambda state: state.has("Furnace", world.player))
-    set_rule(world.get_location("Bone"), lambda state: state.has_any(["Energy Rifle", "Automation II"], world.player))
+    set_rule(world.get_location("Bone"), lambda state: state.has_any(["Energy Rifle", "Fighter Bot"], world.player))
     set_rule(world.get_location("Iron Ingot"), lambda state: state.has_all(["Mass Production I", "Furnace"], world.player))
     set_rule(world.get_location("Copper Ingot"), lambda state: state.has_all(["Mass Production I", "Furnace"], world.player) and state.has_any(["Grass Island", "Rock Island"], world.player))
     set_rule(world.get_location("Steel"), lambda state: state.has_all(["Mass Production II", "Iron Ingot", "Copper Ingot", "Electric Furnace"], world.player))
@@ -112,7 +112,7 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Plasteel"), lambda state: state.has_all(["Advanced Production III", "Industrial Refinery", "Plastic", "Steel", "Desert Island", "Ranching III", "Grass Island"], world.player))
     set_rule(world.get_location("Electronic Parts"), lambda state: state.has_all(["Complex Production I", "Assembler", "Plasteel"], world.player) and state.has_any(["Rock Island", "Desert Island"], world.player))
     set_rule(world.get_location("Titanium Ingot"), lambda state: state.has_all(["Superhard Minerals", "Furnace", "Titanium Ore"], world.player))
-    set_rule(world.get_location("Titanium Ore"), lambda state: state.has_all(["Metallic Island"], world.player) and state.has_any(["Energy Rifle", "Superhard Minerals", "Automation II"], world.player))
+    set_rule(world.get_location("Titanium Ore"), lambda state: state.has_all(["Metallic Island"], world.player) and state.has_any(["Energy Rifle", "Superhard Minerals", "Fighter Bot"], world.player))
     set_rule(world.get_location("Computer Module"), lambda state: state.has_all(["Complex Production I", "Assembler", "Plasteel", "Electronic Parts"], world.player))
     set_rule(world.get_location("Advanced Electronic Parts"), lambda state: state.has_all(["Complex Production II", "Assembler", "Titanium Ingot", "Computer Module", "Electronic Parts", "Glass", "Iron Ingot", "Electric Furnace"], world.player))
     set_rule(world.get_location("Reinforced Super Metal"), lambda state: state.has_all(["Complex Production II", "Industrial Refinery", "Titanium Ore", "Plasteel", "Snow Island"], world.player))
@@ -138,7 +138,8 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Assembler"), lambda state: state.has_all(["Complex Production I", "Plasteel", "Modular Brick", "Steel", "Power"], world.player))
     set_rule(world.get_location("Biome Scanner"), lambda state: state.has_all(["Modular Brick", "Steel", "Explorer Needs III"], world.player))
 
-    set_rule(world.get_location("Power",), lambda state: state.has_all(["Power I", "Iron Ingot", "Modular Brick"], world.player))
+    set_rule(world.get_location("Power"), lambda state: state.has_all(["Power I", "Iron Ingot", "Modular Brick"], world.player))
+    set_rule(world.get_location("Fighter Bot"), lambda state: state.has_all(["Automation II", "Steel", "Explorer Needs I"], world.player))
     # Location rules work no differently from Entrance rules.
     # Most of our locations are chests that can simply be opened by walking up to them.
     # Thus, their logical requirements are covered by the Entrance rules of the Entrances that were required to

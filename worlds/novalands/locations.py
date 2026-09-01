@@ -191,6 +191,7 @@ def create_events(world: NovaLandsWorld) -> None:
     Researches.add_event("Assembler", "Assembler")
     Researches.add_event("Industrial Refinery", "Industrial Refinery")
     Researches.add_event("Biome Scanner", "Biome Scanner")
+    Researches.add_event("Fighter Bot", "Fighter Bot")
     Islands.add_event("Grass Island", "Grass Island")
     Islands.add_event("Rock Island", "Rock Island")
     Islands.add_event("Desert Island", "Desert Island")
