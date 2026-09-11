@@ -109,7 +109,7 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Steel"), lambda state: state.has_all(["Mass Production II", "Iron Ingot", "Copper Ingot", "Electric Furnace"], world.player))
     set_rule(world.get_location("Glass"), lambda state: state.has_all(["Mass Production II", "Electric Furnace", "Desert Island"], world.player))
     set_rule(world.get_location("Plastic"), lambda state: state.has_all(["Advanced Production II", "Industrial Refinery", "Sea Island"], world.player))
-    set_rule(world.get_location("Plasteel"), lambda state: state.has_all(["Advanced Production III", "Industrial Refinery", "Plastic", "Steel", "Desert Island", "Ranching III", "Grass Island"], world.player))
+    set_rule(world.get_location("Plasteel"), lambda state: state.has_all(["Advanced Production III", "Industrial Refinery", "Plastic", "Steel", "Desert Island", "Ranching II", "Ranching III", "Grass Island"], world.player))
     set_rule(world.get_location("Electronic Parts"), lambda state: state.has_all(["Complex Production I", "Assembler", "Plasteel"], world.player) and state.has_any(["Rock Island", "Desert Island"], world.player))
     set_rule(world.get_location("Titanium Ingot"), lambda state: state.has_all(["Superhard Minerals", "Furnace", "Titanium Ore"], world.player))
     set_rule(world.get_location("Titanium Ore"), lambda state: state.has_all(["Metallic Island"], world.player) and state.has_any(["Energy Rifle", "Superhard Minerals", "Fighter Bot"], world.player))
