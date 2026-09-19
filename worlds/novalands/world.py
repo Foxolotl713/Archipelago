@@ -83,4 +83,5 @@ class NovaLandsWorld(World):
         # If you need access to the player's chosen options on the client side, there is a helper for that.
         return self.options.as_dict(
             "goal",
+            "museum_diorama_count",
         )
