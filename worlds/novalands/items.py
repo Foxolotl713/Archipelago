@@ -96,6 +96,10 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Nuclear Tech" : ItemClassification.progression,
     "Hypercomputer" : ItemClassification.progression,
     "Air" : ItemClassification.filler,
+    "Slow Trap" : ItemClassification.trap,
+    "Fast Trap" : ItemClassification.trap,
+    "Zoom In Trap" : ItemClassification.trap,
+    "Zoom Out Trap" : ItemClassification.trap,
 }
 # Each Item instance must correctly report the "game" it belongs to.
 # To make this simple, it is common practice to subclass the basic Item class and override the "game" field.
