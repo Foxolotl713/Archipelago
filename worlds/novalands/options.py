@@ -26,12 +26,17 @@ if TYPE_CHECKING:
 # If you want a toggle to be on by default, you can use the "DefaultOnToggle" class instead of the "Toggle" class.
 
 # A Range is a numeric option with a min and max value. This will be represented by a slider on the website.
-class QuickStart(Toggle):
-    """Whether to start with the Explorer Needs I, Jetpack and Automation I"""
-    display_name = "Quick Start"
 
-class AutomationLogic(Toggle):
-    """Whether to require Automation I and II for most of the game"""
+class AutomationHandling(Choice):
+    """How should Automation be treated in AP?
+    None: Automation is treated as normal items, and are not required for progression.
+    Required: Automation is logically required for progression after a certain point.
+    Starting: The Player starts with Automation I and II.
+    """
+    option_none = 0
+    option_required = 1
+    option_starting = 2
+    default = 1
     display_name = "Automation Logic"
 
 # A Choice is an option with multiple discrete choices. This will be represented by a dropdown on the website.
@@ -74,11 +79,10 @@ class TrapPercentage(Range):
 # This is in the format "option_name_in_snake_case: OptionClassName".
 @dataclass
 class NovaLandsOptions(PerGameCommonOptions):
-    quick_start: QuickStart
     goal: Goal
     museum_diorama_count: MuseumDioramaCount
     boss_checks: BossChecks
-    automation_logic: AutomationLogic
+    automation_handling: AutomationHandling
     museum_checks: MuseumChecks
     trap_percentage: TrapPercentage
 
@@ -88,8 +92,7 @@ class NovaLandsOptions(PerGameCommonOptions):
 # Finally, we can define some option presets if we want the player to be able to quickly choose a specific "mode".
 options_presets = {
     "Default": {
-        "quick_start": True,
-        "automation_logic": True,
+        "automation_handling": 1,
         "goal": 2,
         "museum_diorama_count": 20,
         "boss_checks": True,

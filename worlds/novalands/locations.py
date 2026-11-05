@@ -57,41 +57,49 @@ LOCATION_NAME_TO_ID = {
     "Museum: 3 Grass Dioramas" : 313,
     "Museum: 4 Grass Dioramas" : 314,
     "Museum: 5 Grass Dioramas" : 315,
+    "Museum: Grass Room" : 316,
     "Museum: 1 Rock Diorama" : 321,
     "Museum: 2 Rock Dioramas" : 322,
     "Museum: 3 Rock Dioramas" : 323,
     "Museum: 4 Rock Dioramas" : 324,
     "Museum: 5 Rock Dioramas" : 325,
+    "Museum: Rock Room" : 326,
     "Museum: 1 Desert Diorama" : 331,
     "Museum: 2 Desert Dioramas" : 332,
     "Museum: 3 Desert Dioramas" : 333,
     "Museum: 4 Desert Dioramas" : 334,
     "Museum: 5 Desert Dioramas" : 335,
+    "Museum: Desert Room" : 336,
     "Museum: 1 Sea Diorama" : 341,
     "Museum: 2 Sea Dioramas" : 342,
     "Museum: 3 Sea Dioramas" : 343,
     "Museum: 4 Sea Dioramas" : 344,
     "Museum: 5 Sea Dioramas" : 345,
+    "Museum: Sea Room" : 346,
     "Museum: 1 Forest Diorama" : 351,
     "Museum: 2 Forest Dioramas" : 352,
     "Museum: 3 Forest Dioramas" : 353,
     "Museum: 4 Forest Dioramas" : 354,
     "Museum: 5 Forest Dioramas" : 355,
+    "Museum: Forest Room" : 356,
     "Museum: 1 Snow Diorama" : 361,
     "Museum: 2 Snow Dioramas" : 362,
     "Museum: 3 Snow Dioramas" : 363,
     "Museum: 4 Snow Dioramas" : 364,
     "Museum: 5 Snow Dioramas" : 365,
+    "Museum: Snow Room" : 366,
     "Museum: 1 Metallic Diorama" : 371,
     "Museum: 2 Metallic Dioramas" : 372,
     "Museum: 3 Metallic Dioramas" : 373,
     "Museum: 4 Metallic Dioramas" : 374,
     "Museum: 5 Metallic Dioramas" : 375,
+    "Museum: Metallic Room" : 376,
     "Museum: 1 Behemittium Diorama" : 381,
     "Museum: 2 Behemittium Dioramas" : 382,
     "Museum: 3 Behemittium Dioramas" : 383,
     "Museum: 4 Behemittium Dioramas" : 384,
     "Museum: 5 Behemittium Dioramas" : 385,
+    "Museum: Behemittium Room" : 386
 }
 
 
@@ -225,14 +233,14 @@ def create_regular_locations(world: NovaLandsWorld) -> None:
     elif world.options.museum_checks == 1:
         Museum_locations = get_location_names_with_ids(
             [
-                "Museum: 5 Grass Dioramas",
-                "Museum: 5 Rock Dioramas",
-                "Museum: 5 Desert Dioramas",
-                "Museum: 5 Sea Dioramas",
-                "Museum: 5 Forest Dioramas",
-                "Museum: 5 Snow Dioramas",
-                "Museum: 5 Metallic Dioramas",
-                "Museum: 5 Behemittium Dioramas"
+                "Museum: Grass Room",
+                "Museum: Rock Room",
+                "Museum: Desert Room",
+                "Museum: Sea Room",
+                "Museum: Forest Room",
+                "Museum: Snow Room",
+                "Museum: Metallic Room",
+                "Museum: Behemittium Room"
             ]
         )
         Museum.add_locations(Museum_locations, NovaLandsLocation)
@@ -335,5 +343,5 @@ def create_events(world: NovaLandsWorld) -> None:
     Islands.add_event("Matriarch's Island", "Matriarch's Island")
     Islands.add_event("Behemittium Vein Island", "Behemittium Vein Island")
 
-    if not world.options.automation_logic:
+    if world.options.automation_handling == 0:
         Researches.add_event("Hand Logic", "Hand Logic")

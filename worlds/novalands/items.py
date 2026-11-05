@@ -148,10 +148,11 @@ def create_all_items(world: NovaLandsWorld) -> None:
     # Creating items should generally be done via the world's create_item method.
     # First, we create a list containing all the items that always exist.
     itempool : list[NovaLandsItem] = [
+        world.create_item("Jetpack"),
+        world.create_item("Explorer Needs I"),
         world.create_item("Deposits I"),
         world.create_item("Farming I"),
         world.create_item("Power I"),
-        world.create_item("Automation II"),
         world.create_item("Energy Rifle"),
         world.create_item("Ranching I"),
         world.create_item("Power II"),
@@ -182,10 +183,9 @@ def create_all_items(world: NovaLandsWorld) -> None:
         world.create_item("Nuclear Tech"),
         world.create_item("Hypercomputer"),
     ]
-    if not world.options.quick_start:
-        itempool.append(world.create_item("Explorer Needs I"))
+    if not world.options.automation_handling == 2:
         itempool.append(world.create_item("Automation I"))
-        itempool.append(world.create_item("Jetpack"))
+        itempool.append(world.create_item("Automation II"))
     # Some items may only exist if the player enables certain options.
     # In our case, If the hammer option is enabled, the sixth item is the Hammer.
     # Otherwise, we add a filler Confetti Cannon.
@@ -255,10 +255,8 @@ def create_all_items(world: NovaLandsWorld) -> None:
     
     starting_item = world.create_item("Mass Production I")
     world.push_precollected(starting_item)
-    if world.options.quick_start:
-        starting_item2 = world.create_item("Explorer Needs I")
+    if world.options.automation_handling == 2:
+        starting_item2 = world.create_item("Automation I")
         world.push_precollected(starting_item2)
-        starting_item3 = world.create_item("Automation I")
+        starting_item3 = world.create_item("Automation II")
         world.push_precollected(starting_item3)
-        starting_item4 = world.create_item("Jetpack")
-        world.push_precollected(starting_item4)
