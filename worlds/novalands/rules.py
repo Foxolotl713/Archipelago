@@ -149,7 +149,7 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
         set_rule(world.get_location("Museum: 3 Behemittium Dioramas"), lambda state: state.has_from_list_unique(["Behemittium", "Blood Flower", "Super Control Unit", "Hypercomputer Module", "Moschy Capsule"], world.player, 3))
         set_rule(world.get_location("Museum: 4 Behemittium Dioramas"), lambda state: state.has_from_list_unique(["Behemittium", "Blood Flower", "Super Control Unit", "Hypercomputer Module", "Moschy Capsule"], world.player, 4))
         set_rule(world.get_location("Museum: 5 Behemittium Dioramas"), lambda state: state.has_from_list_unique(["Behemittium", "Blood Flower", "Super Control Unit", "Hypercomputer Module", "Moschy Capsule"], world.player, 5))
-    if world.options.museum_checks==2:
+    if world.options.museum_checks==1:
         set_rule(world.get_location("Museum: Grass Room"), lambda state: state.has_all(["Stone", "Twig", "Modular Brick", "Iron Ingot", "Antork Capsule"], world.player))
         set_rule(world.get_location("Museum: Rock Room"), lambda state: state.has_all(["Stone", "Twig", "Modular Brick", "Iron Ingot", "Carancrab Capsule"], world.player))
         set_rule(world.get_location("Museum: Desert Room"), lambda state: state.has_all(["Sand", "Cactus Flower", "Glass", "Lens", "Scortixa Capsule"], world.player))
@@ -159,14 +159,14 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
         set_rule(world.get_location("Museum: Metallic Room"), lambda state: state.has_all(["Titanium Ingot", "Reinforced Super Metal", "Advanced Electronic Parts", "Supercomputer Module", "Arabeetle Capsule"], world.player))
         set_rule(world.get_location("Museum: Behemittium Room"), lambda state: state.has_all(["Behemittium", "Blood Flower", "Super Control Unit", "Hypercomputer Module", "Moschy Capsule"], world.player))
 
-    set_rule(world.get_location("Antork Capsule"), lambda state: state.has_all(["Grass Island"], world.player))
-    set_rule(world.get_location("Carancrab Capsule"), lambda state: state.has_all(["Rock Island"], world.player))
-    set_rule(world.get_location("Scortixa Capsule"), lambda state: state.has_all(["Desert Island"], world.player))
-    set_rule(world.get_location("Jellyblue Capsule"), lambda state: state.has_all(["Sea Island"], world.player))
-    set_rule(world.get_location("Birbee Capsule"), lambda state: state.has_all(["Forest Island"], world.player))
-    set_rule(world.get_location("Jellypink Capsule"), lambda state: state.has_all(["Snow Island"], world.player))
-    set_rule(world.get_location("Arabeetle Capsule"), lambda state: state.has_all(["Metallic Island"], world.player))
-    set_rule(world.get_location("Moschy Capsule"), lambda state: state.has_all(["Behemittium Island"], world.player))
+    set_rule(world.get_location("Antork Capsule"), lambda state: state.has_all(["Grass Island", "Ranching II", "Steel"], world.player))
+    set_rule(world.get_location("Carancrab Capsule"), lambda state: state.has_all(["Rock Island", "Ranching II", "Steel"], world.player))
+    set_rule(world.get_location("Scortixa Capsule"), lambda state: state.has_all(["Desert Island", "Ranching II", "Steel"], world.player))
+    set_rule(world.get_location("Jellyblue Capsule"), lambda state: state.has_all(["Sea Island", "Ranching II", "Steel"], world.player))
+    set_rule(world.get_location("Birbee Capsule"), lambda state: state.has_all(["Forest Island", "Ranching II", "Steel"], world.player))
+    set_rule(world.get_location("Jellypink Capsule"), lambda state: state.has_all(["Snow Island", "Ranching II", "Steel"], world.player))
+    set_rule(world.get_location("Arabeetle Capsule"), lambda state: state.has_all(["Metallic Island", "Ranching II", "Steel"], world.player))
+    set_rule(world.get_location("Moschy Capsule"), lambda state: state.has_all(["Behemittium Island", "Ranching II", "Steel"], world.player))
 
     set_rule(world.get_location("Sand"), lambda state: state.has_all(["Desert Island"], world.player))
     set_rule(world.get_location("Cactus Flower"), lambda state: state.has_all(["Desert Island"], world.player))
@@ -184,6 +184,7 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Modular Brick"), lambda state: state.has("Furnace", world.player))
     set_rule(world.get_location("Bone"), lambda state: state.has_any(["Energy Rifle", "Fighter Bot"], world.player))
     set_rule(world.get_location("Iron Ingot"), lambda state: state.has_all(["Mass Production I", "Furnace"], world.player))
+    set_rule(world.get_location("Copper Ore"), lambda state: state.has("Grass Island", world.player) or state.has("Rock Island", world.player))
     set_rule(world.get_location("Copper Ingot"), lambda state: state.has_all(["Mass Production I", "Furnace"], world.player) and state.has_any(["Grass Island", "Rock Island"], world.player))
     set_rule(world.get_location("Steel"), lambda state: state.has_all(["Mass Production II", "Iron Ingot", "Copper Ingot", "Electric Furnace"], world.player))
     set_rule(world.get_location("Glass"), lambda state: state.has_all(["Mass Production II", "Electric Furnace", "Sand"], world.player))
@@ -212,6 +213,7 @@ def set_all_location_rules(world: NovaLandsWorld) -> None:
     set_rule(world.get_location("Oasis Island"), lambda state: state.has("Snow Island", world.player))
     set_rule(world.get_location("Behemittium Island"), lambda state: state.has_all(["Reinforced Super Metal", "Biome Scanner"], world.player))
 
+    set_rule(world.get_location("Furnace"), lambda state: state.has("Stone", world.player) or state.has_all(["Advanced Production II", "Modular Brick", "Steel", "Plastic", "Power"], world.player))
     set_rule(world.get_location("Electric Furnace"), lambda state: state.has_all(["Mass Production II", "Modular Brick", "Iron Ingot", "Copper Ingot", "Power"], world.player) or state.has_all(["Advanced Production III", "Modular Brick", "Steel", "Plastic", "Power"], world.player))
     set_rule(world.get_location("Industrial Refinery"), lambda state: state.has_all(["Advanced Production II", "Modular Brick", "Steel", "Power"], world.player))
     set_rule(world.get_location("Assembler"), lambda state: state.has_all(["Complex Production I", "Plasteel", "Modular Brick", "Steel", "Power"], world.player))
