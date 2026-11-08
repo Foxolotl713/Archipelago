@@ -148,6 +148,7 @@ def create_all_items(world: NovaLandsWorld) -> None:
     # Creating items should generally be done via the world's create_item method.
     # First, we create a list containing all the items that always exist.
     itempool : list[NovaLandsItem] = [
+        world.create_item("Mass Production I"),
         world.create_item("Jetpack"),
         world.create_item("Explorer Needs I"),
         world.create_item("Deposits I"),
@@ -252,9 +253,6 @@ def create_all_items(world: NovaLandsWorld) -> None:
     # They will be sent as soon as they connect for the first time (depending on your client's item handling flag).
     # Players can add precollected items themselves via the generic "start_inventory" option.
     # If you want to add your own precollected items, you can do so via world.push_precollected().
-    
-    starting_item = world.create_item("Mass Production I")
-    world.push_precollected(starting_item)
     if world.options.automation_handling == 2:
         starting_item2 = world.create_item("Automation I")
         world.push_precollected(starting_item2)
