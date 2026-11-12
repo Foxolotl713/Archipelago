@@ -53,6 +53,13 @@ ITEM_NAME_TO_ID = {
     "Fast Trap" : 203,
     "Zoom In Trap" : 204,
     "Zoom Out Trap" : 205,
+    "Random Skin Trap" : 206,
+    "2 Steel" : 207,
+    "2 Plastic" : 208,
+    "2 Iron Ingots" : 209,
+    "2 Copper Ingots" : 210,
+    "2 Glass" : 211,
+    "2 Levels" : 212,
 }
 
 # Items should have a defined default classification.
@@ -60,12 +67,12 @@ ITEM_NAME_TO_ID = {
 DEFAULT_ITEM_CLASSIFICATIONS = {
     "Mass Production I" : ItemClassification.progression,
     "Explorer Needs I" : ItemClassification.progression,
-    "Automation I" : ItemClassification.progression,
+    "Automation I" : ItemClassification.progression | ItemClassification.useful,
     "Deposits I" : ItemClassification.useful,
-    "Jetpack" : ItemClassification.progression,
+    "Jetpack" : ItemClassification.progression | ItemClassification.useful,
     "Farming I" : ItemClassification.progression,
     "Power I" : ItemClassification.progression,
-    "Automation II" : ItemClassification.progression,
+    "Automation II" : ItemClassification.progression | ItemClassification.useful,
     "Energy Rifle" : ItemClassification.progression,
     "Ranching I" : ItemClassification.useful,
     "Power II" : ItemClassification.useful,
@@ -100,6 +107,13 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Fast Trap" : ItemClassification.trap,
     "Zoom In Trap" : ItemClassification.trap,
     "Zoom Out Trap" : ItemClassification.trap,
+    "Random Skin Trap" : ItemClassification.trap,
+    "2 Steel" : ItemClassification.useful,
+    "2 Plastic" : ItemClassification.useful,
+    "2 Iron Ingots" : ItemClassification.useful,
+    "2 Copper Ingots" : ItemClassification.useful,
+    "2 Glass" : ItemClassification.useful,
+    "2 Levels" : ItemClassification.useful,
 }
 # Each Item instance must correctly report the "game" it belongs to.
 # To make this simple, it is common practice to subclass the basic Item class and override the "game" field.
@@ -119,9 +133,9 @@ def get_random_filler_item_name(world: NovaLandsWorld) -> str:
     # This ensures that generating with the same generator seed twice yields the same output.
     # DO NOT use a bare random object from Python's built-in random module.
     if world.random.randint(1, 100) <= world.options.trap_percentage:
-        trap_types = ["Slow Trap", "Fast Trap", "Zoom In Trap", "Zoom Out Trap"]
+        trap_types = ["Slow Trap", "Fast Trap", "Zoom In Trap", "Zoom Out Trap", "Random Skin Trap"]
         return world.random.choice(trap_types)
-    return "Air"
+    return world.random.choice(["2 Steel", "2 Plastic", "2 Iron Ingots", "2 Copper Ingots", "2 Glass", "2 Levels"])
 
 
 def create_item_with_correct_classification(world: NovaLandsWorld, name: str) -> NovaLandsItem:
